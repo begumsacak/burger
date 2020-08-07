@@ -1,0 +1,17 @@
+{
+  "name": "burger",
+  "version": "1.0.0",
+  "description": "a burger app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Begum Sacak",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "handlebars": "^4.7.6",
+    "mysql": "^2.18.1"
+  }
+}
