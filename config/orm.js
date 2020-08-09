@@ -9,20 +9,21 @@ var connection = require("./connection.js");
 
 //COPIED FROM PREVIOUS ACTIVITIES NEEDS TO BE UPDATED
 var orm = {
-    selectOne: function (tableInput, colToSearch, valOfCol) {
-        var queryString = "SELECT * FROM ?? WHERE ?? = ?";
-        connection.query(queryString, [tableInput, colToSearch, valOfCol], function (err, result) {
+    selectAll: function (tableInput, cbModel) {
+        var queryString = "SELECT * FROM ?? ";
+        connection.query(queryString, [tableInput], function (err, result) {
             if (err) throw err;
-            console.log(result);
+            cbModel(result);
         });
-    }
-    insertOne: function (whatToSelect, table, orderCol) {
-        var queryString = "SELECT ?? FROM ?? ORDER BY ?? DESC";
+    },
+    create: function ( table, cols, vals, cbModel) {
+        var queryString = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
         console.log(queryString);
-        connection.query(queryString, [whatToSelect, table, orderCol], function (err, result) {
+       var sqlstatement= connection.query(queryString, [table, cols[0], cols[1], vals[0], vals[1]], function (err, result) {
             if (err) throw err;
-            console.log(result);
+            cbModel(result);
         });
+        console.log(sqlstatement.sql)
     },
     updateOne: function (tableOneCol, tableTwoForeignKey, tableOne, tableTwo) {
         var queryString =

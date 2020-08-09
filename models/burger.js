@@ -2,15 +2,15 @@
 var orm = require("../config/orm.js");
 
 //COPIED FROM PREVIOUS ACTIVITIES NEEDS TO BE UPDATED
-var cat = {
-  all: function(cb) {
-    orm.all("cats", function(res) {
+var burgers = {
+  selectAll: function(cb) {
+    orm.selectAll("burgers", function(res) {
       cb(res);
     });
   },
   // The variables cols and vals are arrays.
   create: function(cols, vals, cb) {
-    orm.create("cats", cols, vals, function(res) {
+    orm.create("burgers", cols, vals, function(res) {
       cb(res);
     });
   },
@@ -26,5 +26,5 @@ var cat = {
   }
 };
 
-// Export the database functions for the controller (catsController.js).
-module.exports = cat;
+// Export the database functions for the controller (burgers_controller.js).
+module.exports = burgers;

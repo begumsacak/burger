@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <img src="" />
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <!--Like a for loop-->
+            {{#each burgers}}
+            {{#unless devoured}}
+            {{burger_name}} <button class="devouredBtn">Devoured</button> <br>
+            {{/unless}}
+            {{/each}}
+        </div>
+        <div class="col-sm-6">
+            {{#each burgers}}
+            {{#if devoured}}
+            {{burger_name}} <br>
+            {{/if}}
+            {{/each}}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+         <form action="/api/burgers" method="POST">
+                   <textarea name="burger_name"  class="form-control"
+                   ></textarea>
+                    <button  id="burgerBtn">Add New Burger</button>
+                  </form>
+                   
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
