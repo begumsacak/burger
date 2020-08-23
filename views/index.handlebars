@@ -16,7 +16,7 @@
                 {{!-- {{Like a for loop}} --}}
                 {{#each burgers}}
                 {{#unless devoured}}
-                {{burger_name}} <button class="devouredBtn">Devoured</button> <br>
+                {{burger_name}} <button data-id = {{id}} class="devouredBtn">Devoured</button> <br>
                 {{/unless}}
                 {{/each}}
             
@@ -40,7 +40,7 @@
                         <textarea style="display:block" class="mx-auto form-control" name="burger_name"
                             class="form-control form-control-sm"></textarea>
                         <br>
-                        <button type="button" id="burgerBtn" style="display:block" class="btn btn-danger mx-auto">Add
+                        <button type="submit" id="burgerBtn" style="display:block" class="btn btn-danger mx-auto">Add
                             New Burger</button>
                     </form>
                 </div>

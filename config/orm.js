@@ -25,18 +25,19 @@ var orm = {
         });
         console.log(sqlstatement.sql)
     },
-    updateOne: function (tableOneCol, tableTwoForeignKey, tableOne, tableTwo) {
-        var queryString =
-            "SELECT ??, COUNT(??) AS count FROM ?? LEFT JOIN ?? ON ??.??= ??.id GROUP BY ?? ORDER BY count DESC LIMIT 1";
+    update: function (table, cols, vals, cbModel) {
+        
 
-        connection.query(
-            queryString,
-            [tableOneCol, tableOneCol, tableOne, tableTwo, tableTwo, tableTwoForeignKey, tableOne, tableOneCol],
+var statement =  connection.query(
+            "update ?? set ?? = ? where ?? = ?",
+            [table, cols[0], vals[0], cols[1], vals[1] ],
             function (err, result) {
                 if (err) throw err;
                 console.log(result);
+                cbModel(result)
             }
         );
+        console.log(statement.sql)
     }
 };
 
