@@ -13,18 +13,20 @@
 
     <div class="row">
         <div class="col-sm-6">
-                {{!-- {{Like a for loop}} --}}
-                {{#each burgers}}
-                {{#unless devoured}}
-                {{burger_name}} <button data-id = {{id}} class="devouredBtn">Devoured</button> <br>
-                {{/unless}}
-                {{/each}}
-            
+            <h1 class="text-danger">Burgers to Eat</h1>
+            {{!-- {{Like a for loop}} --}}
+            {{#each burgers}}
+            {{#unless devoured}}
+            {{burger_name}} <button data-id={{this.id}} class="devouredBtn btn-danger mx-auto">Devour It!</button>
+            {{/unless}}
+            {{/each}}
+
         </div>
         <div class="col-sm-6">
+            <h1 class="text-danger">Devoured Burgers</h1>
             {{#each burgers}}
             {{#if devoured}}
-            {{burger_name}} <br>
+            {{burger_name}} <button data-id={{this.id}} class="delete-burger btn-danger mx-auto">Delete</button> <br>
             {{/if}}
             {{/each}}
 
@@ -40,8 +42,10 @@
                         <textarea style="display:block" class="mx-auto form-control" name="burger_name"
                             class="form-control form-control-sm"></textarea>
                         <br>
-                        <button type="submit" id="burgerBtn" style="display:block" class="btn btn-danger mx-auto">Add
-                            New Burger</button>
+                        <button type="submit" id="burgerBtn" style="display:block" class="btn btn-danger mx-auto">Add New Burger</button>
+                        <br>
+                        <p class="text-center">Enter the burger you want to eat and then click the "Add New Burger"
+                            button</p>
                     </form>
                 </div>
             </div>

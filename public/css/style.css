@@ -14,3 +14,12 @@
 h1 {
     font-family: 'Fredoka One', cursive;
 }
+
+body {
+    background-color: #EFB261;
+}
+
+#burgerBtn {
+    font-family: 'Fredoka One';
+    font-size: 18px;
+}

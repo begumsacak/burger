@@ -7,7 +7,6 @@ var connection = require("./connection.js");
 // These help avoid SQL injection
 // https://en.wikipedia.org/wiki/SQL_injection
 
-//COPIED FROM PREVIOUS ACTIVITIES NEEDS TO BE UPDATED
 var orm = {
     selectAll: function (tableInput, cbModel) {
         var queryString = "SELECT * FROM ?? ";
@@ -16,21 +15,34 @@ var orm = {
             cbModel(result);
         });
     },
-    create: function ( table, cols, vals, cbModel) {
+    create: function (table, cols, vals, cbModel) {
         var queryString = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
         console.log(queryString);
-       var sqlstatement= connection.query(queryString, [table, cols[0], cols[1], vals[0], vals[1]], function (err, result) {
+        var sqlstatement = connection.query(queryString, [table, cols[0], cols[1], vals[0], vals[1]], function (err, result) {
             if (err) throw err;
             cbModel(result);
         });
         console.log(sqlstatement.sql)
     },
     update: function (table, cols, vals, cbModel) {
-        
 
-var statement =  connection.query(
+
+        var statement = connection.query(
             "update ?? set ?? = ? where ?? = ?",
-            [table, cols[0], vals[0], cols[1], vals[1] ],
+            [table, cols[0], vals[0], cols[1], vals[1]],
+            function (err, result) {
+                if (err) throw err;
+                console.log(result);
+                cbModel(result)
+            }
+        );
+        console.log(statement.sql)
+    },
+    delete: function (table, cols, vals, cbModel) {
+        console.log(cols, vals)
+        var statement = connection.query(
+            "DELETE FROM ?? where ?? = ?",
+            (table, cols, vals),
             function (err, result) {
                 if (err) throw err;
                 console.log(result);
@@ -39,6 +51,7 @@ var statement =  connection.query(
         );
         console.log(statement.sql)
     }
+
 };
 
 module.exports = orm;

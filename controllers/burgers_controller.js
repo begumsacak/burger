@@ -19,31 +19,44 @@ router.post("/api/burgers", function (req, res) {
   ], [
     req.body.burger_name, false
   ], function (result) {
-    // Send back the ID of the new quote
     res.redirect("/")
   });
 });
 
 router.put("/api/burgers/:id", function (req, res) {
-   var id = req.params.id
+  var id = req.params.id
 
-  burger.update(["devoured", "id"] , [true, id], function (result) {
-     res.json(result)
+  burger.update(["devoured", "id"], [true, id], function (result) {
+    res.json(result)
   });
 });
+
 
 router.delete("/api/burgers/:id", function (req, res) {
-  var condition = "id = " + req.params.id;
-
-  burgers.delete(condition, function (result) {
-    if (result.affectedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
+  burger.delete({
+    id: req.params.id
+  }, function (err) {
+    if (err) {
+      return res.send(err);
     } else {
-      res.status(200).end();
+      console.log("successfully deleted")
     }
+  })
+})
+
+router.delete("/api/burgers/:id", function (req, res) {
+  var id = req.params.id
+  burger.delete({
+    // We just have to specify which burger we want to destroy with "where"
+    where: id
+  }).then(function (result) {
+    res.json(result);
   });
 });
+
+
+
+
 
 // Export routes for server.js to use.
 module.exports = router
